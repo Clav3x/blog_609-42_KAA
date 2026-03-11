@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="site-branding">
+            <strong><a href="{% url 'homepage' %}">Я ЛОГО(честно)</a></strong>
+        </div>
+        <nav>
+            <a href="{% url 'article_list' %}">Статьи</a>
+            <a href="{% url 'about' %}">О нас</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+</body>
+</html>
