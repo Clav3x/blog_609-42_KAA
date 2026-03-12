@@ -4,27 +4,18 @@
 
     <main>
         <h1>Article List</h1>
-        <nav>
-            <ul>
-                {% if user.is_authenticated %}
-                <li>
-                    <form class="form" action="/accounts/logout/" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
+        {% if user.is_authenticated %}
+            <div class="create-article-container">
+                <a href="{% url 'articles:create' %}" class="btn-create">
+                    Create article
+                </a>
+            </div>
+        {% endif %}
         <div class="articles">
             {% for element in articles %}
                 <div class="article__item">
                     <h2>
-                        <a href="{% url 'article_detail' slug=element.slug %}">
+                        <a href="{% url 'articles:article_detail' slug=element.slug %}">
                             {{ element.title}}
                         </a>
                     </h2>
