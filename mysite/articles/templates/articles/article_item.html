@@ -3,7 +3,20 @@
 {% block content %}
     <div class="article-detail">
         <img src="{{ article.thumbnail.url }}" alt="" class="article-thumb">
-        <h1>{{ artucle.title }}</h1>
+        <h1>{{ article.title }}</h1>
         <p>{{ article.body }}</p>
+
+        {% if user.is_authenticated and user.id == article.author.id %}
+            <div class="article-actions">
+                <a class="article-action-btn btn-warning"
+                   href="{% url 'articles:update' slug=article.slug %}">
+                    Update
+                </a>
+                <a class="article-action-btn btn-danger"
+                   href="{% url 'articles:delete' slug=article.slug %}">
+                    Delete
+                </a>
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}

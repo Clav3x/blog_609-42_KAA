@@ -1,16 +1,13 @@
+{% extends "base_layout.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>About Us</title>
-</head>
-<body>
-    <main>
-        <h1>{{ header }}</h1>
-        <p><strong>Director:</strong> {{ director.name }}</p>
-        <p><strong>Address:</strong> {{ address|join:", " }}</p> <p><strong>Staff:</strong> {{ staff|join:", " }}</p>
-    </main>
-</body>
-</html>
+
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+<div class="about-page">
+    <h1>{{ header }}</h1>
+    <p><strong>Director:</strong> {{ director.name }}</p>
+    <p><strong>Address:</strong> {{ address|join:", " }}</p>
+    <p><strong>Staff:</strong> {{ staff|join:", " }}</p>
+</div>
+{% endblock content %}

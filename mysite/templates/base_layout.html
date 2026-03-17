@@ -3,33 +3,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Default title{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <nav>
-            <ul>
-                {% if user.is_authenticated %}
-                <li>
-                    <form class="form" action="{% url 'accounts:logout' %}" method="post">
-                        {% csrf_token %}
-                        <button type="submit">Logout</button>
-                    </form>
-                </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'accounts:login' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </nav>
-    <header>
+
+    <header class="site-header">
         <div class="site-branding">
             <strong><a href="{% url 'homepage' %}">Я ЛОГО(честно)</a></strong>
         </div>
-        <nav>
-            <a href="{% url 'articles:article_list' %}">Статьи</a>
-            <a href="{% url 'about' %}">О нас</a>
+
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="{% url 'articles:article_list' %}">Статьи</a>
+                <a href="{% url 'about' %}">О нас</a>
+            </div>
+
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                    <form class="logout-form" action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <a class="auth-btn login-btn" href="{% url 'accounts:login' %}">Login</a>
+                    <a class="auth-btn signup-btn" href="{% url 'accounts:signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
 

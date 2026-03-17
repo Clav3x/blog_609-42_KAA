@@ -1,0 +1,16 @@
+{% extends "base_layout.html" %}
+{% load static %}
+{% block title %}Create or update article{% endblock title %}
+{% block content %}
+<h1>Create or update article</h1>
+<div class="form-container">
+    <form class="site-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-fields">
+            {{ form.as_p }} </div>
+
+        <button type="submit" class="btn-submit">Save</button>
+    </form>
+</div>
+{% endblock content %}

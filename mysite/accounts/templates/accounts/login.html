@@ -1,22 +1,18 @@
+{% extends "base_layout.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <div class="form-container">
-        <h1>Login</h1>
-        <form action="{% url 'accounts:login' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {% if request.GET.next %}
-                <input type="hidden" name="next" value="{{ request.GET.next }}">
-            {% endif %}
-            <button type="submit">Login</button>
-        </form>
-    </div>
-</body>
-</html>
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="form-container auth-page">
+    <h1>Login</h1>
+    <form class="form auth-form" action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <button type="submit">Login</button>
+    </form>
+</div>
+{% endblock content %}
